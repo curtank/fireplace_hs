@@ -1,0 +1,162 @@
+Can mulligan [<Minion ('Inkmaster Solia')>, <Minion ("Medivh's Valet")>, <Spell ('Forgotten Torch')>, <Minion ('Snowchugger')>]
+Can mulligan [<Weapon ('Cursed Blade')>, <Minion ('Grimy Gadgeteer')>, <Minion ('Axe Flinger')>]
+Playing <Minion ('Babbling Book')> on None
+Playing <Spell ('Frostbolt')> on <Hero ('Garrosh Hellscream')>
+Playing <Spell ('Forbidden Flame')> on <Minion ('Babbling Book')>
+Playing <Minion ('Bloodsail Cultist')> on None
+Playing <Spell ('Volcanic Potion')> on None
+Playing <Minion ('Axe Flinger')> on None
+Playing <Minion ('Goblin Blastmage')> on None
+Playing <Weapon ('Cursed Blade')> on None
+Playing <Minion ("Kor'kron Elite")> on None
+Playing <Spell ('The Coin')> on None
+Playing <Spell ('Forgotten Torch')> on <Minion ('Bloodsail Cultist')>
+Playing <Minion ('Siege Engine')> on None
+Playing <Spell ('Arcane Explosion')> on None
+Playing <Spell ('Mortal Strike')> on <Minion ('Axe Flinger')>
+Playing <Spell ('Arcane Missiles')> on None
+Playing <Spell ('Shield Block')> on None
+Playing <Spell ('Arcane Missiles')> on None
+Playing <Minion ('Grommash Hellscream')> on None
+Game completed normally.
+Can mulligan [<Minion ("Medivh's Valet")>, <Spell ('Mirror Image')>, <Spell ('Polymorph')>]
+Can mulligan [<Spell ('Protect the King!')>, <Minion ('Ravaging Ghoul')>, <Spell ('Bouncing Blade')>, <Minion ('Ravaging Ghoul')>]
+Playing <Minion ("Medivh's Valet")> on None
+Playing <Minion ('Warbot')> on None
+Playing <Spell ('The Coin')> on None
+Playing <Spell ('Whirlwind')> on None
+Playing <Spell ('Mirror Image')> on None
+Playing <Minion ('Armorsmith')> on None
+Playing <Spell ('Polymorph')> on <Minion ('Armorsmith')>
+Playing <Spell ('Battle Rage')> on None
+Playing <Minion ("Alexstrasza's Champion")> on None
+Playing <Minion ('Fallen Hero')> on None
+Playing <Weapon ("Death's Bite")> on None
+Playing <Minion ('Cryomancer')> on None
+Playing <Minion ('Ravaging Ghoul')> on None
+Playing <Minion ('Ravaging Ghoul')> on None
+Playing <Spell ('Arcane Missiles')> on None
+Playing <Spell ('Forgotten Torch')> on <Hero ('Jaina Proudmoore')>
+Playing <Minion ('Cryomancer')> on None
+Playing <Minion ('Grommash Hellscream')> on None
+Playing <Secret ('Spellbender')> on None
+Playing <Secret ('Ice Barrier')> on None
+Playing <Spell ('Protect the King!')> on None
+Playing <Minion ('Bloodsail Cultist')> on None
+Playing <Minion ('Coldarra Drake')> on None
+Playing <Weapon ('Brass Knuckles')> on None
+Playing <Spell ('Polymorph')> on <Minion ('Grommash Hellscream')>
+Playing <Minion ('Varian Wrynn')> on None
+Playing <Minion ('Archmage Antonidas')> on None
+Playing <Secret ('Duplicate')> on None
+Playing <Minion ('Screwjank Clunker')> on None
+Playing <Spell ('Sleep with the Fishes')> on None
+Game completed normally.
+Can mulligan [<Spell ('Shatter')>, <Spell ('Polymorph')>, <Secret ('Mirror Entity')>]
+Can mulligan [<Spell ('Cleave')>, <Minion ('Bloodsail Cultist')>, <Minion ('Frothing Berserker')>, <Spell ('Commanding Shout')>]
+Playing <Spell ('The Coin')> on None
+Playing <Spell ('Commanding Shout')> on None
+Playing <Spell ('Heroic Strike')> on None
+Playing <Secret ('Ice Block')> on None
+Playing <Minion ('Wee Spellstopper')> on None
+Playing <Spell ('Arcane Blast')> on <Minion ('Wee Spellstopper')>
+Playing <Minion ('Bloodsail Cultist')> on None
+Playing <Spell ('Bash')> on <Minion ('Bloodsail Cultist')>
+Playing <Minion ('Servant of Yogg-Saron')> on None
+Playing <Spell ('Protect the King!')> on None
+Playing <Weapon ("King's Defender")> on None
+Playing <Spell ('Blood To Ichor')> on <Minion ('Servant of Yogg-Saron')>
+Playing <Minion ('Soot Spewer')> on None
+Playing <Minion ('Kabal Lackey')> on None
+Playing <Minion ('Grommash Hellscream')> on None
+Playing <Minion ('Servant of Yogg-Saron')> on None
+Playing <Weapon ('Arcanite Reaper')> on None
+Playing <Minion ("Sorcerer's Apprentice")> on None
+Playing <Spell ('Arcane Intellect')> on None
+Playing <Spell ('Unstable Portal')> on None
+Playing <Minion ('Screwjank Clunker')> on None
+Playing <Spell ('Pyroblast')> on <Hero ('Jaina Proudmoore')>
+Game completed normally.
+Can mulligan [<Secret ('Vaporize')>, <Spell ('Blizzard')>, <Secret ('Counterspell')>]
+Can mulligan [<Minion ('Orgrimmar Aspirant')>, <Spell ('Ironforge Portal')>, <Spell ('Shield Slam')>, <Minion ('Obsidian Destroyer')>]
+Playing <Minion ('Babbling Book')> on None
+Playing <Spell ('Shield Slam')> on <Minion ('Babbling Book')>
+Playing <Spell ('The Coin')> on None
+Playing <Spell ('Jade Blossom')> on None
+Playing <Spell ('Ice Lance')> on <Hero ('Jaina Proudmoore')>
+Playing <Secret ('Vaporize')> on None
+Playing <Spell ('Ironforge Portal')> on None
+Playing <Spell ('Blizzard')> on None
+Playing <Minion ('Axe Flinger')> on None
+Playing <Spell ('Commanding Shout')> on None
+Playing <Secret ('Counterspell')> on None
+Playing <Spell ('Arcane Blast')> on <Minion ('Axe Flinger')>
+Playing <Spell ('Arcane Intellect')> on None
+Playing <Minion ('Orgrimmar Aspirant')> on None
+Playing <Minion ('Grimestreet Pawnbroker')> on None
+Playing <Spell ('Polymorph')> on <Minion ('Orgrimmar Aspirant')>
+Playing <Minion ("Medivh's Valet")> on <Hero ('Jaina Proudmoore')>
+Playing <Minion ('Obsidian Destroyer')> on None
+Playing <Spell ('Flamecannon')> on None
+Playing <Spell ('Greater Arcane Missiles')> on None
+Playing <Minion ('Malkorok')> on None
+Playing <Minion ('Goblin Blastmage')> on None
+Playing <Spell ('Commanding Shout')> on None
+Game completed normally.
+Can mulligan [<Minion ('Goblin Blastmage')>, <Spell ('Flame Lance')>, <Spell ('Arcane Blast')>]
+Can mulligan [<Minion ('Armorsmith')>, <Weapon ('Ogre Warmaul')>, <Minion ('Arathi Weaponsmith')>, <Spell ('Commanding Shout')>]
+Playing <Spell ('I Know a Guy')> on None
+Playing <Spell ('Frost Nova')> on None
+Playing <Minion ('Armorsmith')> on None
+Playing <Spell ('Revenge')> on None
+Playing <Minion ('Goblin Blastmage')> on None
+Playing <Weapon ("King's Defender")> on None
+Playing <Spell ('Arcane Blast')> on <Minion ('Goblin Blastmage')>
+Playing <Minion ('Servant of Yogg-Saron')> on None
+Playing <Minion ('Arathi Weaponsmith')> on None
+Playing <Minion ('Public Defender')> on None
+Playing <Spell ('Polymorph')> on <Minion ('Public Defender')>
+Playing <Minion ("Medivh's Valet")> on None
+Playing <Spell ('The Coin')> on None
+Playing <Spell ('Cone of Cold')> on <Minion ("Medivh's Valet")>
+Playing <Spell ('Execute')> on <Minion ("Medivh's Valet")>
+Playing <Minion ('Demented Frostcaller')> on None
+Playing <Spell ('Forbidden Flame')> on <Minion ('Demented Frostcaller')>
+Playing <Minion ('Grommash Hellscream')> on None
+Playing <Spell ('Greater Arcane Missiles')> on None
+Playing <Minion ('Ancient Shieldbearer')> on None
+Playing <Secret ('Mirror Entity')> on None
+Playing <Weapon ('Gorehowl')> on None
+Playing <Weapon ('Fiery War Axe')> on None
+Playing <Minion ('Manic Soulcaster')> on None
+Playing <Minion ('Hobart Grapplehammer')> on None
+Game completed normally.
+Can mulligan [<Spell ('Arcane Explosion')>, <Minion ('Cryomancer')>, <Minion ('Servant of Yogg-Saron')>]
+Can mulligan [<Minion ('Ravaging Ghoul')>, <Minion ("Alexstrasza's Champion")>, <Minion ('Grommash Hellscream')>, <Minion ('Warbot')>]
+Playing <Spell ('Bolster')> on None
+Playing <Spell ('The Coin')> on None
+Playing <Minion ('Dalaran Aspirant')> on None
+Playing <Spell ('Inner Rage')> on <Minion ('Dalaran Aspirant')>
+Playing <Spell ('Blood Warriors')> on None
+Playing <Minion ('Servant of Yogg-Saron')> on None
+Playing <Spell ('Mortal Strike')> on <Hero ('Jaina Proudmoore')>
+Playing <Minion ('Babbling Book')> on None
+Playing <Spell ('Polymorph')> on <Minion ('Servant of Yogg-Saron')>
+Playing <Spell ('Shield Slam')> on <Minion ('Sheep')>
+Playing <Spell ('Polymorph')> on <Minion ('Babbling Book')>
+Playing <Secret ('Vaporize')> on None
+Playing <Minion ('Ravaging Ghoul')> on None
+Playing <Minion ('Flame Leviathan')> on None
+Playing <Weapon ('Ogre Warmaul')> on None
+Playing <Minion ('Fierce Monkey')> on None
+Playing <Secret ('Mirror Entity')> on None
+Playing <Secret ('Spellbender')> on None
+Playing <Minion ('Ancient Shieldbearer')> on None
+Playing <Minion ('Warbot')> on None
+Playing <Minion ('Archmage Antonidas')> on None
+Playing <Secret ('Mirror Entity')> on None
+Playing <Minion ('Siege Engine')> on None
+Playing <Spell ('Flamecannon')> on None
+Playing <Minion ('Faceless Summoner')> on None
+Playing <Weapon ("Death's Bite")> on None
+Game completed normally.
