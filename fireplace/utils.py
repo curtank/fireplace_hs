@@ -8,7 +8,7 @@ from xml.etree import ElementTree
 from hearthstone.enums import CardClass, CardType
 import sys
 import copy
-sys.setrecursionlimit(10000)
+
 
 # Autogenerate the list of cardset modules
 _cards_module = os.path.join(os.path.dirname(__file__), "cards")
@@ -254,6 +254,7 @@ def getreward(game:".game.Game"):
 		pass
 	return adavantage
 	pass
+
 def move(game) :
 	moveseqs=[]
 	gamemovepairs=[]
@@ -295,8 +296,6 @@ def move(game) :
 			heropowernew=playernew.hero.power
 			heropowernew.use()
 			gamemovepairs.append((gamenew,moveseq))
-			
-		continue
 
 	# iterate over our hand and play whatever is playable
 	
@@ -307,15 +306,13 @@ def move(game) :
 		target = None
 		if card.must_choose_one:
 			if not card.choose_cards :
-				continue
-			card = random.choice(card.choose_cards)
+				card = random.choice(card.choose_cards)
 		if card.requires_target():
 			if card.target:
 				target = random.choice(card.targets)
 				pass
 		print("Playing %r on %r" % (card, target))
 		card.play(target=target)
-		continue
 	# Randomly attack with whatever can attack
 	for cardindex in range(len(player.hand)):
 		card=player.hand[cardindex]
@@ -337,15 +334,31 @@ def move(game) :
 		#input("s")
 	#print(game_state_to_xml(game))
 	gamemovepairs.append(game,[])
-
 	return gamemovepair
 	pass
-def play_turn(game: ".game.Game") -> ".game.Game":
+def useheropower(game:".game.Game",target=-1):
+	heropower=game.current_player.hero.power
+	if heropower.requires_target() and target >= 0 :
+		heropower.use(target=heropower.targets[target])
+	elif target<0:
+		heropower.use()
+	pass
+def usechoice(game:".game.game",target=-1):
+	player=game.current_player
+	if player.choice:
+		choice = player.choice.cards[target]
+		print("Choosing card %r" % (choice))
+		input("choice happen")
+		player.choice.choose(choice)
+	else:
+		input("no choice but usechoice")
+	pass
+def play_turnnew(game: ".game.Game") -> ".game.Game":
 	game,moveseq=move(game)
 	game.end_turn()
 	return game
 	pass
-def play_turnold(game: ".game.Game") -> ".game.Game":
+def play_turn(game: ".game.Game") -> ".game.Game":
 	
 	while True:
 		player = game.current_player
@@ -353,10 +366,8 @@ def play_turnold(game: ".game.Game") -> ".game.Game":
 		input("s2")
 		#if we are in choice state,we have to choice one  
 		if player.choice:
-			choice = random.choice(player.choice.cards)
-			print("Choosing card %r" % (choice))
-			input("choice happen")
-			player.choice.choose(choice)
+			tar = random.choice(range(len(player.choice.cards)))
+			usechoice(game,tar)
 			continue
 		heropower = player.hero.power
 		cardset=[card for card in player.hand if card.is_playable()]
@@ -368,9 +379,13 @@ def play_turnold(game: ".game.Game") -> ".game.Game":
 			pass
 		if heropower.is_usable():
 			if heropower.requires_target():
-				heropower.use(target=random.choice(heropower.targets))
+				tar=random.choice(range(len(heropower.targets)))
+				useheropower(game,tar)
+				#heropower.use(target=random.choice(heropower.targets))
 			else:
-				heropower.use()
+				useheropower(game)
+				#heropower.use()
+				
 			continue
 
 		# iterate over our hand and play whatever is playable
@@ -403,7 +418,9 @@ def play_turnold(game: ".game.Game") -> ".game.Game":
 def showgamestate(game):
 	print(game.board)
 	#print(game.decks)
-	print(game.hands)
+	print(game.player1.hand)
+	print(game.player2.hand)
+	#print(game.hands)
 	chas=game.characters
 	for cha in chas:
 		chasta=str(cha)+str(cha.atk)+' '+str(cha.health)
