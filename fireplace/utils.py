@@ -308,7 +308,7 @@ def move(game) :
 			if not card.choose_cards :
 				card = random.choice(card.choose_cards)
 		if card.requires_target():
-			if card.target:
+			if card.targets:
 				target = random.choice(card.targets)
 				pass
 		print("Playing %r on %r" % (card, target))
@@ -365,7 +365,7 @@ def useplaycard(game:".game.Game",cardindex,mustchooseindex=-1,targetindex=-1):
 			input("mustchooseerror mustchoose"+str(card.must_choose_one)+str(mustchooseindex))
 			return
 	if card.requires_target():
-		if card.target:
+		if card.targets:
 			target = card.targets[targetindex]
 		else:
 			input("require_target but no suitable target")
@@ -373,30 +373,32 @@ def useplaycard(game:".game.Game",cardindex,mustchooseindex=-1,targetindex=-1):
 			pass
 	input("Playing %r on %r" % (card, target))
 	card.play(target=target)
+def useattack(game:".game.Game",chaindex,targetindex):
+	character=game.current_player.characters[chaindex]
+	input("atk"+str(character)+str(targetindex))
+	character.attack(character.targets[targetindex])
 def play_turnnew(game: ".game.Game") -> ".game.Game":
 	game,moveseq=move(game)
 	game.end_turn()
 	return game
 	pass
+def generateonemove(parameter_list):
+	pass
 def play_turn(game: ".game.Game") -> ".game.Game":
-	
-	while True:
+	ittime=15
+	while ittime>0:
+		ittime-=1
 		player = game.current_player
-
 		input("s2")
 		#if we are in choice state,we have to choice one  
 		if player.choice:
 			tar = random.choice(range(len(player.choice.cards)))
 			usechoice(game,tar)
+			changeflag=True
 			continue
 		heropower = player.hero.power
 		cardset=[card for card in player.hand if card.is_playable()]
 		charset=[character for character in player.characters if character.can_attack()]
-		if cardset or charset or heropower.is_usable():
-			pass
-		else:
-			break
-			pass
 		if heropower.is_usable():
 			if heropower.requires_target():
 				tar=random.choice(range(len(heropower.targets)))
@@ -413,26 +415,30 @@ def play_turn(game: ".game.Game") -> ".game.Game":
 		#input("choosecard")
 		if cardset:
 			cardindex=random.choice(range(len(player.hand)))
-			
 			card=player.hand[cardindex]
 			if card.is_playable():
-				pass
-			targetindex=-1
-			mustchoice=-1
-			if card.must_choose_one:
-				mustchoice = random.choice(range(len(card.choose_cards)))
-				card=card.choose_cards[mustchoice]
-			if card.requires_target():
-				if card.target:
+				targetindex=-1
+				mustchoice=-1
+				if card.must_choose_one:
+					mustchoice = random.choice(range(len(card.choose_cards)))
+					card=card.choose_cards[mustchoice]
+				if card.requires_target():
+					if not card.targets:
+						continue
 					targetindex = random.choice(range(len(card.targets)))
-					pass
-			useplaycard(game,cardindex,mustchoice,targetindex)
-			continue
+				
+				useplaycard(game,cardindex,mustchoice,targetindex)
+				continue
 		# Randomly attack with whatever can attack
 		if charset:
-			character=random.choice(charset)
+			characterindex=random.choice(range(len(player.characters)))
+			character=player.characters[characterindex]
+			if character.can_attack():
+				targetindex=random.choice(range(len(character.targets)))
+				useattack(game,characterindex,targetindex)
+				pass
 			#input("s3")
-			character.attack(random.choice(character.targets))
+			
 			#input("s")
 	#print(game_state_to_xml(game))
 	game.end_turn()
