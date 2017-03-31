@@ -343,7 +343,7 @@ def useheropower(game:".game.Game",target=-1):
 	elif target<0:
 		heropower.use()
 	pass
-def usechoice(game:".game.game",target=-1):
+def usechoice(game:".game.Game",target=-1):
 	player=game.current_player
 	if player.choice:
 		choice = player.choice.cards[target]
@@ -353,6 +353,26 @@ def usechoice(game:".game.game",target=-1):
 	else:
 		input("no choice but usechoice")
 	pass
+def useplaycard(game:".game.Game",cardindex,mustchooseindex=-1,targetindex=-1):
+	player=game.current_player
+	
+	card=player.hand[cardindex]
+	target = None
+	if card.must_choose_one :
+		if mustchooseindex >= 0:
+			card = card.choose_cards[mustchooseindex]
+		else:
+			input("mustchooseerror mustchoose"+str(card.must_choose_one)+str(mustchooseindex))
+			return
+	if card.requires_target():
+		if card.target:
+			target = card.targets[targetindex]
+		else:
+			input("require_target but no suitable target")
+			return	 
+			pass
+	input("Playing %r on %r" % (card, target))
+	card.play(target=target)
 def play_turnnew(game: ".game.Game") -> ".game.Game":
 	game,moveseq=move(game)
 	game.end_turn()
@@ -385,7 +405,6 @@ def play_turn(game: ".game.Game") -> ".game.Game":
 			else:
 				useheropower(game)
 				#heropower.use()
-				
 			continue
 
 		# iterate over our hand and play whatever is playable
@@ -393,18 +412,21 @@ def play_turn(game: ".game.Game") -> ".game.Game":
 		print(cardset)
 		#input("choosecard")
 		if cardset:
-			card=random.choice(cardset)
-			target = None
+			cardindex=random.choice(range(len(player.hand)))
+			
+			card=player.hand[cardindex]
+			if card.is_playable():
+				pass
+			targetindex=-1
+			mustchoice=-1
 			if card.must_choose_one:
-				if not card.choose_cards :
-					continue
-				card = random.choice(card.choose_cards)
+				mustchoice = random.choice(range(len(card.choose_cards)))
+				card=card.choose_cards[mustchoice]
 			if card.requires_target():
 				if card.target:
-					target = random.choice(card.targets)
+					targetindex = random.choice(range(len(card.targets)))
 					pass
-			print("Playing %r on %r" % (card, target))
-			card.play(target=target)
+			useplaycard(game,cardindex,mustchoice,targetindex)
 			continue
 		# Randomly attack with whatever can attack
 		if charset:
