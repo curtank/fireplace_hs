@@ -12,8 +12,9 @@ import copy
 
 # Autogenerate the list of cardset modules
 _cards_module = os.path.join(os.path.dirname(__file__), "cards")
+print(_cards_module)
 CARD_SETS = [cs for _, cs, ispkg in iter_modules([_cards_module]) if ispkg]
-
+print(CARD_SETS)
 
 class CardList(list):
 	def __contains__(self, x):
@@ -362,34 +363,39 @@ def useplaycard(game:".game.Game",cardindex,mustchooseindex=-1,targetindex=-1):
 		if mustchooseindex >= 0:
 			card = card.choose_cards[mustchooseindex]
 		else:
-			input("mustchooseerror mustchoose"+str(card.must_choose_one)+str(mustchooseindex))
+			print("mustchooseerror mustchoose"+str(card.must_choose_one)+str(mustchooseindex))
 			return
 	if card.requires_target():
 		if card.targets:
 			target = card.targets[targetindex]
 		else:
-			input("require_target but no suitable target")
+			print("require_target but no suitable target")
 			return	 
 			pass
-	input("Playing %r on %r" % (card, target))
+	print("Playing %r on %r" % (card, target))
 	card.play(target=target)
 def useattack(game:".game.Game",chaindex,targetindex):
 	character=game.current_player.characters[chaindex]
-	input("atk"+str(character)+str(targetindex))
+	print("atk"+str(character)+str(targetindex))
 	character.attack(character.targets[targetindex])
 def play_turn(game: ".game.Game") -> ".game.Game":
 	while True:
-		seq=generateonemove(game)
+		seq,allseq=generateonemove(game)
 		if seq[1]=='none':
+			input('endturn')
 			break
 		if seq[1]=='atk':
 			useattack(game,seq[2],seq[3])
+			input("atk")
 		if seq[1]=='card':
 			useplaycard(game,seq[2],seq[3],seq[4])
+			input("playcard")
 		if seq[1]=='choice':
 			usechoice(game,seq[2])
+			input('choice')
 		if seq[1]=='heropower':
 			useheropower(game,seq[2])
+			input('power')
 	game.end_turn()
 	return game
 	pass
@@ -402,84 +408,98 @@ def generateonemove(game: ".game.Game"):
 			usechoice(gamecop,tar)
 			tup=(gamecop,'choice',tar)
 			endseq.append(tup)
-	heropower=player.hero.power
-	if heropower.is_usable():
-		if heropower.requires_target():
-			for tar in range(len(heropower.targets)):
+	else:
+		heropower=player.hero.power
+
+		if heropower.is_usable():
+			if heropower.requires_target():
+				for tar in range(len(heropower.targets)):
+					gamecop=copy.deepcopy(game)
+					useheropower(gamecop,tar)
+					tup=(gamecop,'heropower',tar)
+					endseq.append(tup)
+				#heropower.use(target=random.choice(heropower.targets))
+			else:
+				tar=-1
 				gamecop=copy.deepcopy(game)
-				useheropower(gamecop,tar)
+				useheropower(gamecop)
 				tup=(gamecop,'heropower',tar)
 				endseq.append(tup)
-			#heropower.use(target=random.choice(heropower.targets))
-		else:
-			tar=-1
-			gamecop=copy.deepcopy(game)
-			useheropower(gamecop)
-			tup=(gamecop,'heropower',tar)
-			endseq.append(tup)
-			#heropower.use()	
-	for cardindex in range(len(player.hand)):
-		card=player.hand[cardindex]
-		if card.is_playable():
-			targetindex=-1
-			mustchoice=-1
-			if card.must_choose_one:
-				for mustchoice in range(len(card.choose_cards)):
-					card=card.choose_cards[mustchoice]
+				#heropower.use()	
+		for cardindex in range(len(player.hand)):
+			card=player.hand[cardindex]
+			if card.is_playable():
+				targetindex=-1
+				mustchoice=-1
+				if card.must_choose_one:
+					for mustchoice in range(len(card.choose_cards)):
+						card=card.choose_cards[mustchoice]
+						if card.requires_target():
+							if card.targets:
+								for targetindex in range(len(card.targets)):
+									gamecop=copy.deepcopy(game)
+									useplaycard(gamecop,cardindex,mustchoice,targetindex)
+									tup=(gamecop,'card',cardindex,mustchoice,targetindex)
+									endseq.append(tup)
+									pass
+							
+						else:
+							gamecop=copy.deepcopy(game)
+							targetindex=-1
+							useplaycard(gamecop,cardindex,mustchoice,targetindex)
+							tup=(gamecop,'card',cardindex,mustchoice,targetindex)
+							endseq.append(tup)
+							pass
+						
+						pass
+				else:
 					if card.requires_target():
 						if card.targets:
+							mustchoice=-1
 							for targetindex in range(len(card.targets)):
 								gamecop=copy.deepcopy(game)
 								useplaycard(gamecop,cardindex,mustchoice,targetindex)
 								tup=(gamecop,'card',cardindex,mustchoice,targetindex)
 								endseq.append(tup)
-								pass
-						
 					else:
 						gamecop=copy.deepcopy(game)
 						targetindex=-1
+						mustchoice=-1
 						useplaycard(gamecop,cardindex,mustchoice,targetindex)
 						tup=(gamecop,'card',cardindex,mustchoice,targetindex)
 						endseq.append(tup)
 						pass
-					
-					pass
-			else:
-				if card.requires_target():
-					if card.targets:
-						mustchoice=-1
-						for targetindex in range(len(card.targets)):
-							gamecop=copy.deepcopy(game)
-							useplaycard(gamecop,cardindex,mustchoice,targetindex)
-							tup=(gamecop,'card',cardindex,mustchoice,targetindex)
-							endseq.append(tup)
-				else:
+		
+		for characterindex in range(len(player.characters)):
+			character=player.characters[characterindex]
+			if character.can_attack():
+				for targetindex in range(len(character.targets)):
 					gamecop=copy.deepcopy(game)
-					targetindex=-1
-					mustchoice=-1
-					useplaycard(gamecop,cardindex,mustchoice,targetindex)
-					tup=(gamecop,'card',cardindex,mustchoice,targetindex)
+					useattack(gamecop,characterindex,targetindex)	
+					tup=(gamecop,'atk',characterindex,targetindex)
 					endseq.append(tup)
-					pass
-	
-	for characterindex in range(len(player.characters)):
-		character=player.characters[characterindex]
-		if character.can_attack():
-			for targetindex in range(len(character.targets)):
-				gamecop=copy.deepcopy(game)
-				useattack(gamecop,characterindex,targetindex)	
-				tup=(gamecop,'atk',characterindex,targetindex)
-				endseq.append(tup)
 	bestseq=(game,'none')
+	reward=getreward(game)
 	for ins in endseq:
 		showgamestate(ins[0])
-		if getreward(ins[0]):
+		thisreward=getreward(ins[0])
+		if thisreward>reward:
+			reward=thisreward
 			bestseq=ins
 			pass
 		input("choice")
-	return bestseq
+	return bestseq,endseq
 				
 		
+def generatekmove(game,k):
+	if k>1:
+		bestseq,endseq=generateonemove(game)
+		for ins in endseq:
+			bestseq,endseq=generatekmove(ins[0],k-1)
+	else:
+		bestseq,endseq=generateonemove(game)
+	
+
 	pass
 def play_turnold(game: ".game.Game") -> ".game.Game":
 	ittime=15
